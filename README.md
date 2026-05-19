@@ -3,7 +3,7 @@
 **High-Performance Networking Benchmarks — RoCEv2 RDMA vs. Kernel TCP at 100 Gb/s**
 
 Research internship, Télécom Paris — May 2026  
-*Nader Almasri · Research Intern, Distributed AI Systems & Networking*
+*Nader Al Masri · Research Intern, Distributed AI Systems & Networking*
 
 ---
 
