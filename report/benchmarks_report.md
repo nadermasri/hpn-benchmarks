@@ -9,7 +9,7 @@
 
 ## Abstract
 
-This report documents a two-week research benchmarking study conducted during an internship at Télécom Paris. The study systematically compares two high-performance network transports — RoCEv2 RDMA and kernel TCP — on a back-to-back 100 Gb/s link, evaluating throughput, latency, CPU cost, and collective communication performance via NCCL.
+This documents research benchmarking study conducted during an internship at Télécom Paris. The study systematically compares two high-performance network transports — RoCEv2 RDMA and kernel TCP — on a back-to-back 100 Gb/s link, evaluating throughput, latency, CPU cost, and collective communication performance via NCCL.
 
 It is structured in four parts:
 
