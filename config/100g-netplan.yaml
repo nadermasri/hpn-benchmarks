@@ -1,0 +1,20 @@
+# /etc/netplan/100g.yaml
+# 100G benchmark interface — static IP, jumbo frames
+# Apply with: sudo netplan apply
+#
+# Node 1 (pc1n): ens2f1np1 → 192.168.100.1
+# Node 2 (pc2n): ens2f0np0 → 192.168.100.2
+#
+# Replace INTERFACE and ADDRESS below for each node.
+
+network:
+  version: 2
+  ethernets:
+    # Node 1: replace with ens2f1np1 / 192.168.100.1/24
+    # Node 2: replace with ens2f0np0 / 192.168.100.2/24
+    INTERFACE:
+      addresses:
+        - ADDRESS/24
+      mtu: 9000
+      dhcp4: false
+      dhcp6: false
