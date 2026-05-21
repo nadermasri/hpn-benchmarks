@@ -34,6 +34,9 @@ The goal: understand not just *how fast* each transport is, but *why* — tracin
 | 08c | CPU cost | TCP 8-stream RX @ 94 Gb/s | **0.0829 cores/Gb/s** (all kernel) |
 | 09a | NCCL allreduce | RDMA, 2 nodes, RTX 3060 | **50.6 Gb/s** (capped by no GPUDirect) |
 | 09b | NCCL allreduce | TCP socket fallback | **10.3 Gb/s** |
+| 10  | CPU contention | RDMA + 4 cores of stress-ng | **~0% application slowdown** |
+| 10  | CPU contention | iperf3 TCP-8 + 4 cores of stress-ng | **-28% app, 32× retrx** |
+
 
 ### Headline comparisons
 
