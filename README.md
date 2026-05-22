@@ -36,6 +36,9 @@ The goal: understand not just *how fast* each transport is, but *why* — tracin
 | 09b | NCCL allreduce | TCP socket fallback | **10.3 Gb/s** |
 | 10  | CPU contention | RDMA + 4 cores of stress-ng | **~0% application slowdown** |
 | 10  | CPU contention | iperf3 TCP-8 + 4 cores of stress-ng | **-28% app, 32× retrx** |
+| 11  | DDP training | ResNet-50 batch=32 over RDMA/TCP | **3% TCP penalty** (hidden) |
+| 11  | DDP training | ResNet-50 batch=4 over RDMA/TCP | **33% TCP penalty** (exposed) |
+
 
 
 ### Headline comparisons
