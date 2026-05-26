@@ -38,6 +38,10 @@ The goal: understand not just *how fast* each transport is, but *why* — tracin
 | 10  | CPU contention | iperf3 TCP-8 + 4 cores of stress-ng | **-28% app, 32× retrx** |
 | 11  | DDP training | ResNet-50 batch=32 over RDMA/TCP | **3% TCP penalty** (hidden) |
 | 11  | DDP training | ResNet-50 batch=4 over RDMA/TCP | **33% TCP penalty** (exposed) |
+| 12  | DDP model sweep | ResNet-18 RDMA vs TCP | **+12% TCP penalty** |
+| 12  | DDP model sweep | ResNet-50 RDMA vs TCP | +3% (from test 11) |
+| 12  | DDP model sweep | ResNet-152 RDMA vs TCP | **+1.7%** (deep model hides) |
+
 
 
 
@@ -53,6 +57,20 @@ NCCL peak  :  RDMA 50.6 Gb/s vs TCP 10.3 Gb/s  →   5× faster allreduce
 The RDMA CPU cost is entirely in user-space (application polling its completion queue) and can be reduced further with event-mode completions. The TCP CPU cost is in kernel-space (`%sys` + `%soft`) and is structurally unavoidable.
 
 ---
+
+### A counterintuitive finding (test 12)
+
+The TCP penalty does NOT grow monotonically with model size:
+ResNet-18  → +12%  (smallest model, biggest penalty)
+ResNet-50  → +3%
+ResNet-152 → +1.7% (largest model, smallest penalty)
+
+The penalty depends on the **compute-to-communication ratio**, not parameter count. Deep models with small layers (ResNet-152) compute many ms per MB of gradient, hiding the allreduce in the backward pass. Wide shallow models (ResNet-18) emit gradients faster than TCP can absorb them.
+
+The "LLM-style" regime where TCP breaks down is when batch sizes are small, GPUs are fast, or compute is heavily parallelized (transformer attention) — not simply when models are large.
+
+
+
 
 ## Hardware
 
