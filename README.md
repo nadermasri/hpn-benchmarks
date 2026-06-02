@@ -41,7 +41,7 @@ The goal: understand not just *how fast* each transport is, but *why* — tracin
 | 12  | DDP model sweep | ResNet-18 RDMA vs TCP | **+12% TCP penalty** |
 | 12  | DDP model sweep | ResNet-50 RDMA vs TCP | +3% (from test 11) |
 | 12  | DDP model sweep | ResNet-152 RDMA vs TCP | **+1.7%** (deep model hides) |
-
+| 13  | GDR feasibility | ibv_reg_mr() on GPU pointer | **EFAULT** — block in closed driver |
 
 
 
